@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import cookieParser from 'cookie-parser';
 
 import "dotenv/config"
 
@@ -16,6 +17,7 @@ app.use(cors({
     origin: process.env.FRONTEND_URL,
     credentials: true
 }))
+app.use(cookieParser());
 
 app.use("/api/users", userRoutes)
 app.use("/api/auth", authRoutes)
