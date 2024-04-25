@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 
 import * as apiClient from "../api-client";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppContext } from "../contexts/AppContext";
 
 export type SignInFormData = {
@@ -11,6 +11,8 @@ export type SignInFormData = {
 };
 
 const SignIn = () => {
+  const queryClient = useQueryClient();
+
   const navigate = useNavigate();
 
   const { showToast } = useAppContext();
@@ -22,8 +24,13 @@ const SignIn = () => {
   } = useForm<SignInFormData>();
 
   const mutation = useMutation(apiClient.signInUser, {
-    onSuccess: () => {
+    onSuccess: async () => {
       showToast({ message: "Signed in successfully", type: "SUCCESS" });
+
+      // This will force validateToken query to run again.
+      // Ref: https://tanstack.com/query/v4/docs/framework/react/guides/query-invalidation
+      await queryClient.invalidateQueries("validateToken");
+
       navigate("/");
     },
     onError: (error: Error) => {
@@ -69,7 +76,13 @@ const SignIn = () => {
           <span className="text-red-400">{errors.password.message}</span>
         )}
       </label>
-      <span>
+      <span className="flex items-center justify-between">
+        <span className="text-sm">
+          Not registered?{" "}
+          <Link to="/register" className="underline">
+            Create an account here
+          </Link>
+        </span>
         <button
           type="submit"
           className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-500 text-xl"
