@@ -44,7 +44,9 @@ const SignIn = () => {
 
   return (
     <form className="flex flex-col gap-5" onSubmit={onSubmit}>
-      <h2 className="text-3xl font-bold">Sign in</h2>
+      <h2 className="text-3xl font-bold" data-testId="SignIn__header">
+        Sign in
+      </h2>
 
       <label className="text-gray-700 text-sm font-bold flex-1">
         Email
@@ -54,6 +56,7 @@ const SignIn = () => {
           {...register("email", {
             required: "This field is required",
           })}
+          data-testId="SignIn__emailInputBox"
         />
         {errors.email && (
           <span className="text-red-400">{errors.email.message}</span>
@@ -71,6 +74,7 @@ const SignIn = () => {
               message: "Password must be atleast 6 characters",
             },
           })}
+          data-testId="SignIn__passwordInputBox"
         />
         {errors.password && (
           <span className="text-red-400">{errors.password.message}</span>
@@ -85,6 +89,7 @@ const SignIn = () => {
         </span>
         <button
           type="submit"
+          data-testId="SignIn__submitButton"
           className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-500 text-xl"
         >
           Sign in

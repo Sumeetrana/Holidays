@@ -31,6 +31,7 @@ const Header = () => {
           ) : (
             <Link
               to="/sign-in"
+              data-test="Header__signIn"
               className="flex bg-white items-center text-blue-600 px-3 font-bold hover:bg-gray-100"
             >
               Sign in
