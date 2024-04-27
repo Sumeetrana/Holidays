@@ -81,7 +81,7 @@ const SignIn = () => {
         )}
       </label>
       <span className="flex items-center justify-between">
-        <span className="text-sm">
+        <span className="text-sm" data-testId="SignIn__registerPageLink">
           Not registered?{" "}
           <Link to="/register" className="underline">
             Create an account here

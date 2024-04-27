@@ -57,6 +57,7 @@ const Register = () => {
             {...register("firstName", {
               required: "This field is required",
             })}
+            data-testId="Register__firstNameInput"
           />
           {errors.firstName && (
             <span className="text-red-400">{errors.firstName.message}</span>
@@ -70,6 +71,7 @@ const Register = () => {
             {...register("lastName", {
               required: "This field is required",
             })}
+            data-testId="Register__lastNameInput"
           />
           {errors.lastName && (
             <span className="text-red-400">{errors.lastName.message}</span>
@@ -84,6 +86,7 @@ const Register = () => {
           {...register("email", {
             required: "This field is required",
           })}
+          data-testId="Register__emailInput"
         />
         {errors.email && (
           <span className="text-red-400">{errors.email.message}</span>
@@ -101,6 +104,7 @@ const Register = () => {
               message: "Password must be atleast 6 characters",
             },
           })}
+          data-testId="Register__passwordInput"
         />
         {errors.password && (
           <span className="text-red-400">{errors.password.message}</span>
@@ -120,6 +124,7 @@ const Register = () => {
               }
             },
           })}
+          data-testId="Register__confirmPasswordInput"
         />
         {errors.confirmPassword && (
           <span className="text-red-400">{errors.confirmPassword.message}</span>
@@ -129,6 +134,7 @@ const Register = () => {
         <button
           type="submit"
           className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-500 text-xl"
+          data-testId="Register__createAccountButton"
         >
           Create Account
         </button>
