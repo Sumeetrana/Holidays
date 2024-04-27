@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
+import path from 'path';
 
 import "dotenv/config"
 
@@ -11,6 +12,9 @@ import authRoutes from "./routes/auth";
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string)
 
 const app = express();
+
+app.use(express.static(path.join(__dirname, "../../frontend/dist")))
+
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(cors({
