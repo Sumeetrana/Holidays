@@ -25,12 +25,6 @@ router.post("/", verifyToken, [
     body("pricePerNight").notEmpty().withMessage('PricePerNight is required and must be a number'),
     body("facilities").notEmpty().isArray().withMessage('Facilities are required'),
 ],upload.array("imageFiles", 6), async(req: Request, res: Response) => {
-    const errors = validationResult(req);
-    
-    if(!errors.isEmpty()) {
-        return res.status(400).json({message: errors.array()})
-    }
-    
     const imageFiles = req.files as Express.Multer.File[]
     const newHotel: HotelType = req.body;
      
