@@ -9,6 +9,7 @@ import "dotenv/config"
 
 import userRoutes from "./routes/users";
 import authRoutes from "./routes/auth";
+import hotelRoutes from "./routes/hotels";
 
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string)
 
@@ -32,6 +33,7 @@ app.use(cookieParser());
 
 app.use("/api/users", userRoutes)
 app.use("/api/auth", authRoutes)
+app.use("/api/hotels", hotelRoutes)
 
 app.listen(7000, () => {
     console.log(`Server is running on 7000`);
