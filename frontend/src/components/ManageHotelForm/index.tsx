@@ -4,8 +4,11 @@ import TypeSection from "./TypeSection";
 import FacilitiesSection from "./FacilitiesSection";
 import GuestsSection from "./GuestsSection";
 import UploadImagesSection from "./UploadImagesSection";
+import { HotelType } from "../../../../backend/src/models/hotel";
+import { useEffect } from "react";
 
 interface IProps {
+  hotel: HotelType;
   isLoading: boolean;
   onSave: (hotelFormData: FormData) => void;
 }
@@ -24,10 +27,15 @@ export type HotelFormData = {
   starRating: number;
 };
 
-const ManageHotelForm: React.FC<IProps> = ({ onSave, isLoading }) => {
+const ManageHotelForm: React.FC<IProps> = ({ onSave, isLoading, hotel }) => {
   const formMethods = useForm<HotelFormData>();
 
-  const { handleSubmit } = formMethods;
+  const { handleSubmit, reset } = formMethods;
+
+  useEffect(() => {
+    // Pre populating hotel form
+    reset(hotel);
+  }, [hotel, reset]);
 
   const onSubmit = handleSubmit((formDataJson: HotelFormData) => {
     const formData = new FormData();
