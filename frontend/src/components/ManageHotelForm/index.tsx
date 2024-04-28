@@ -21,8 +21,9 @@ const ManageHotelForm = () => {
 
   return (
     <FormProvider {...formMethods}>
-      <form>
+      <form className="flex flex-col gap-10">
         <HotelDetailsSection />
+        <TypeSection />
       </form>
     </FormProvider>
   );
