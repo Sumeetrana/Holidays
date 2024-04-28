@@ -19,7 +19,7 @@ const HotelDetailsSection = () => {
           {...register("name", {
             required: "This field is required",
           })}
-          data-testId="SignIn__emailInputBox"
+          data-testId="AddHotelForm__nameInput"
         />
         {errors.name && (
           <span className="text-red-400">{errors.name.message}</span>
@@ -34,7 +34,7 @@ const HotelDetailsSection = () => {
             {...register("city", {
               required: "This field is required",
             })}
-            data-testId="SignIn__emailInputBox"
+            data-testId="AddHotelForm__cityInput"
           />
           {errors.city && (
             <span className="text-red-400">{errors.city.message}</span>
@@ -48,7 +48,7 @@ const HotelDetailsSection = () => {
             {...register("country", {
               required: "This field is required",
             })}
-            data-testId="SignIn__emailInputBox"
+            data-testId="AddHotelForm__countryInput"
           />
           {errors.country && (
             <span className="text-red-400">{errors.country.message}</span>
@@ -63,7 +63,7 @@ const HotelDetailsSection = () => {
             required: "This field is required",
           })}
           rows={10}
-          data-testId="SignIn__emailInputBox"
+          data-testId="AddHotelForm__descriptionInput"
         />
         {errors.description && (
           <span className="text-red-400">{errors.description.message}</span>
@@ -78,7 +78,7 @@ const HotelDetailsSection = () => {
           {...register("pricePerNight", {
             required: "This field is required",
           })}
-          data-testId="SignIn__emailInputBox"
+          data-testId="AddHotelForm__pricePerNightInput"
         />
         {errors.pricePerNight && (
           <span className="text-red-400">{errors.pricePerNight.message}</span>
@@ -96,7 +96,9 @@ const HotelDetailsSection = () => {
             Select as rating
           </option>
           {[1, 2, 3, 4, 5].map((num) => (
-            <option value={num}>{num}</option>
+            <option value={num} data-test={`AddHotelForm__rating-${num}`}>
+              {num}
+            </option>
           ))}
         </select>
         {errors.starRating && (
